@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body class="estiloGlobal">
+    <div class="container pesquisarContainer">
+      <div class="card darken-1">
+        <div class="card-content">
+          <span class="card-title cabecalho">Pesquisar Usuários</span>
+          <div class="row">
+            <form class="col s12" onsubmit="change(event)">
+              <div class="row">
+                <div class="input-field col s10">
+                  <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input
+                      onkeyup="change(event)"
+                      placeholder="Placeholder"
+                      id="nome"
+                      type="text"
+                      class="validate"
+                    />
+                    <label for="nome">Nome</label>
+                  </div>
+                </div>
+                <div class="col s2">
+                  <a
+                    style="margin-top: 30px;"
+                    onclick="pesquisar()"
+                    class="waves-effect waves-light btn"
+                    >buscar</a
+                  >
+                </div>
+              </div>
+              <div class="card cardEstatistica darken-1">
+                <div class="card-content">
+                  <span class="card-title cabecalho">Estatísticas</span>
+                  <div class="row">
+                    <p style="color: #000080;" class="col s3">
+                      Sexo Masculino: <strong id="masculino"></strong>
+                    </p>
+                    <p style="color: #ff00ff;" class="col s3">
+                      Sexo Feminino: <strong id="feminino"></strong>
+                    </p>
+                    <p style="color: #8b4513;" class="col s3">
+                      Soma das idades: <strong id="soma"></strong>
+                    </p>
+                    <p style="color: #4b0082;" class="col s3">
+                      Média das idades: <strong id="media"></strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card darken-1">
+                  <div class="card-content">
+                    <span
+                      id="usuariosEncontrados"
+                      class="card-title cabecalho"
+                    ></span>
+                    <div id="listaUsuarios"></div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body class="estiloGlobal">
+    <div class="container">
+      <div
+        id="quadradoRGB"
+        style="
+          margin-top: 20px;
+          border: 2px solid #fff !important;
+          height: 80vh;
+          border: 1px solid;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <div class="row componentes">
+          <h3
+            id="titulo"
+            style="display: flex; justify-content: center; align-items: center;"
+          ></h3>
+          <div class="col s12">
+            <table>
+              <tr>
+                <td style="width: 20%; color: red;">
+                  (R) Vermelho
+                </td>
+                <td style="width: 60%;">
+                  <input
+                    style="color: red;"
+                    onchange="changeRGB()"
+                    id="redInput"
+                    type="range"
+                    min="0"
+                    max="255"
+                  />
+                </td>
+                <td style="width: 20%;">
+                  <input
+                    style="color: red;"
+                    id="redInputValue"
+                    type="text"
+                    disabled
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 20%; color: green;">
+                  (G) Verde
+                </td>
+                <td style="width: 60%;">
+                  <input
+                    onchange="changeRGB()"
+                    id="greenInput"
+                    type="range"
+                    min="0"
+                    max="255"
+                  />
+                </td>
+                <td style="width: 20%;">
+                  <input
+                    style="color: green;"
+                    id="greenInputValue"
+                    type="text"
+                    disabled
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 20%; color: blue;">
+                  (B) Azul
+                </td>
+                <td style="width: 60%;">
+                  <input
+                    onchange="changeRGB()"
+                    id="blueInput"
+                    type="range"
+                    min="0"
+                    max="255"
+                  />
+                </td>
+                <td style="width: 20%;">
+                  <input
+                    style="color: blue;"
+                    id="blueInputValue"
+                    type="text"
+                    disabled
+                  />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
