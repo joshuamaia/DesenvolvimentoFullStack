@@ -1,7 +1,10 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
-export default class Installments extends Component {
-  carregaValores(periodo, montante, juros) {
+export default function Installments(props) {
+  const [valoresArray, setValoresArray] = useState([]);
+  const { periodo, montante, juros } = props;
+
+  useEffect(() => {
     let valores = [];
     let valorAcomulado = montante;
     let valorJurosAcumulado =
@@ -24,67 +27,62 @@ export default class Installments extends Component {
       count = count + 1;
     }
 
-    return valores;
-  }
+    setValoresArray([...valores]);
+  }, [juros, montante, periodo]);
 
-  render() {
-    const { periodo, montante, juros } = this.props;
-    const valoresArray = this.carregaValores(periodo, montante, juros);
-    console.log(valoresArray);
-    return (
-      <>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Valor Acumulado</th>
-                <th>Valor do Juros acumulado</th>
-                <th>Percentual de Juros Acumulado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {valoresArray.map((valor) => {
-                return (
-                  <tr key={valor.count}>
-                    <td
-                      style={{
-                        color: juros > 0 ? "#00ff00" : "#FFA07A",
-                      }}
-                    >
-                      {new Intl.NumberFormat("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                        maximumFractionDigits: 2,
-                      }).format(valor.valorComJuros)}
-                    </td>
-                    <td
-                      style={{
-                        color: juros > 0 ? "#00ff00" : "#FFA07A",
-                      }}
-                    >
-                      {new Intl.NumberFormat("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                        maximumFractionDigits: 2,
-                      }).format(valor.valorJurosAcumulado)}
-                    </td>
-                    <td
-                      style={{
-                        color: juros > 0 ? "#00BFFF" : "#ffb6c1",
-                      }}
-                    >
-                      {new Intl.NumberFormat("pt-BR", {
-                        maximumFractionDigits: 2,
-                      }).format(valor.jurosAcumulado)}{" "}
-                      %
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Valor Acumulado</th>
+              <th>Valor do Juros acumulado</th>
+              <th>Percentual de Juros Acumulado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {valoresArray.map((valor) => {
+              return (
+                <tr key={valor.count}>
+                  <td
+                    style={{
+                      color: juros > 0 ? "#00ff00" : "#FFA07A",
+                    }}
+                  >
+                    {new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                      maximumFractionDigits: 2,
+                    }).format(valor.valorComJuros)}
+                  </td>
+                  <td
+                    style={{
+                      color: juros > 0 ? "#00ff00" : "#FFA07A",
+                    }}
+                  >
+                    {new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                      maximumFractionDigits: 2,
+                    }).format(valor.valorJurosAcumulado)}
+                  </td>
+                  <td
+                    style={{
+                      color: juros > 0 ? "#00BFFF" : "#ffb6c1",
+                    }}
+                  >
+                    {new Intl.NumberFormat("pt-BR", {
+                      maximumFractionDigits: 2,
+                    }).format(valor.jurosAcumulado)}{" "}
+                    %
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 }
