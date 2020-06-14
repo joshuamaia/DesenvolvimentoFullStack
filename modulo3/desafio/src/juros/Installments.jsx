@@ -36,15 +36,23 @@ export default function Installments(props) {
         <table>
           <thead>
             <tr>
-              <th>Valor Acumulado</th>
-              <th>Valor do Juros acumulado</th>
-              <th>Percentual de Juros Acumulado</th>
+              <th style={{ color: "#EEE8AA" }}>Parcela</th>
+              <th style={{ color: "#ADD8E6" }}>Valor</th>
+              <th style={{ color: "#F0E68C" }}>
+                {juros >= 0 ? "Valorização" : "Desvalorização"}
+              </th>
+              <th style={{ color: "#E6E6FA" }}>
+                {juros >= 0
+                  ? "Percentual de Valorização"
+                  : "Percentual de Desvalorização"}
+              </th>
             </tr>
           </thead>
           <tbody>
             {valoresArray.map((valor) => {
               return (
                 <tr key={valor.count}>
+                  <td style={{ color: "#EEE8AA" }}>{valor.count}</td>
                   <td
                     style={{
                       color: juros > 0 ? "#00ff00" : "#FFA07A",

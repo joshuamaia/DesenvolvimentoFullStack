@@ -21,7 +21,7 @@ export default function Form() {
                       <label>Montante Inicial:</label>
                       <input
                         style={{
-                          color: "#fff",
+                          color: "#ADD8E6",
                         }}
                         value={montante}
                         id="baseinss"
@@ -33,7 +33,7 @@ export default function Form() {
                       <label>Taxa de Juros Mensal:</label>
                       <input
                         style={{
-                          color: "#fff",
+                          color: "#F0E68C",
                         }}
                         value={juros}
                         id="descontoinss"
@@ -45,7 +45,7 @@ export default function Form() {
                       <label>Período:</label>
                       <input
                         style={{
-                          color: "#fff",
+                          color: "#E6E6FA",
                         }}
                         value={periodo}
                         id="baseirrf"
