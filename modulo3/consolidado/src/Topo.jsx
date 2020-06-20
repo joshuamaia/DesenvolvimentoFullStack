@@ -3,7 +3,7 @@ import React from "react";
 export default function Topo() {
   return (
     <>
-      <nav className="blue-grey darken-2">
+      <nav className="blue darken-4">
         <div class="nav-wrapper">
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>

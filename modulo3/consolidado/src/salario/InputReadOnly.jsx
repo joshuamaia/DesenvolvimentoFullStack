@@ -66,11 +66,16 @@ export default class InputReadOnly extends Component {
 
     const options = {
       title: "Gráfico Salário",
-      backgroundColor: "#A9A9A9",
-      color: "#fff",
+      titleTextStyle: { color: "#fff" },
+      backgroundColor: "#191970",
+      pieSliceTextStyle: {
+        color: "black",
+      },
+      legend: { textStyle: { color: "#fff" } },
+      colors: ["#00ff00", "#ff8c00", "#ffb6c1"],
     };
     const data = [
-      ["Linguagens", "Quantidade"],
+      ["Discriminação", "Quantidade"],
       ["Salário Líquido", salarioLiquido],
       ["Desconto INSS", descontoInss],
       ["Desconto IRRF", descontoIrrf],
@@ -169,7 +174,6 @@ export default class InputReadOnly extends Component {
           </div>
           <div className="col s6">
             <Chart
-              style={{ background: "#000" }}
               width={"100%"}
               height={"auto"}
               chartType="PieChart"

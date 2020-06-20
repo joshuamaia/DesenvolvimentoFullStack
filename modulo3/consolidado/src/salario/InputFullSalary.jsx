@@ -14,7 +14,7 @@ export default class InputFullSalary extends Component {
     return (
       <div className="row">
         <form className="col s12">
-          <div className="card blue-grey darken-2">
+          <div className="card blue-grey darken-4">
             <div className="card-content white-text">
               <span className="card-title">React Salário</span>
 
