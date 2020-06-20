@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Chart } from "react-google-charts";
 import css from "./salario.module.css";
 import ProgressBarSalary from "./ProgressBarSalary";
 
@@ -62,6 +63,18 @@ export default class InputReadOnly extends Component {
     let descontoIrrf = this.calculaIRRF(baseIRPF);
     const descontos = descontoInss + descontoIrrf;
     const salarioLiquido = fullSalary - descontos;
+
+    const options = {
+      title: "Gráfico Salário",
+      backgroundColor: "#A9A9A9",
+      color: "#fff",
+    };
+    const data = [
+      ["Linguagens", "Quantidade"],
+      ["Salário Líquido", salarioLiquido],
+      ["Desconto INSS", descontoInss],
+      ["Desconto IRRF", descontoIrrf],
+    ];
 
     return (
       <>
@@ -134,7 +147,7 @@ export default class InputReadOnly extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col s3">
+          <div className="col s6">
             <label>Salário Líquido:</label>
             <input
               value={
@@ -154,7 +167,18 @@ export default class InputReadOnly extends Component {
               className={css.salarioLiquido}
             />
           </div>
+          <div className="col s6">
+            <Chart
+              style={{ background: "#000" }}
+              width={"100%"}
+              height={"auto"}
+              chartType="PieChart"
+              data={data}
+              options={options}
+            />
+          </div>
         </div>
+
         <ProgressBarSalary
           descontoInss={new Intl.NumberFormat("en-IN", {
             maximumFractionDigits: 2,
