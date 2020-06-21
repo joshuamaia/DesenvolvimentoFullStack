@@ -87,6 +87,7 @@ export default class InputReadOnly extends Component {
           <div className="col s3">
             <label>Base INSS:</label>
             <input
+              readOnly
               value={new Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL",
@@ -100,6 +101,7 @@ export default class InputReadOnly extends Component {
           <div className="col s3">
             <label>Desconto INSS:</label>
             <input
+              readOnly
               value={
                 new Intl.NumberFormat("pt-BR", {
                   style: "currency",
@@ -120,6 +122,7 @@ export default class InputReadOnly extends Component {
           <div className="col s3">
             <label>Base IRRF:</label>
             <input
+              readOnly
               value={new Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL",
@@ -133,6 +136,7 @@ export default class InputReadOnly extends Component {
           <div className="col s3">
             <label>Desconto IRRF:</label>
             <input
+              readOnly
               value={
                 new Intl.NumberFormat("pt-BR", {
                   style: "currency",
@@ -155,6 +159,7 @@ export default class InputReadOnly extends Component {
           <div className="col s6">
             <label>Salário Líquido:</label>
             <input
+              readOnly
               value={
                 new Intl.NumberFormat("pt-BR", {
                   style: "currency",

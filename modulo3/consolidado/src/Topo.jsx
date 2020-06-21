@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Topo() {
   return (
     <>
-      <nav className="blue darken-4">
-        <div class="nav-wrapper">
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <nav style={{ minHeight: "60px" }} className="blue darken-4">
+        <div className="nav-wrapper">
+          <ul id="nav-mobile" className="left">
             <li>
-              <a href="/">Salário</a>
+              <Link to="/">Salário</Link>
             </li>
             <li>
-              <a href="/juros">Juros</a>
+              <Link to="/juros">Juros</Link>
             </li>
           </ul>
         </div>
