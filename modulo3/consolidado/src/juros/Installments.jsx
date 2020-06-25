@@ -36,7 +36,7 @@ export default function Installments(props) {
         <table>
           <thead>
             <tr>
-              <th style={{ color: "#EEE8AA" }}>Parcela</th>
+              <th style={{ color: "#EEE8AA" }}>Mês</th>
               <th style={{ color: "#ADD8E6" }}>Valor</th>
               <th style={{ color: "#F0E68C" }}>
                 {juros >= 0 ? "Valorização" : "Desvalorização"}

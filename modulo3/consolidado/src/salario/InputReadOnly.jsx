@@ -73,6 +73,7 @@ export default class InputReadOnly extends Component {
       },
       legend: { textStyle: { color: "#fff" } },
       colors: ["#00ff00", "#ff8c00", "#ffb6c1"],
+      is3D: true,
     };
     const data = [
       ["Discriminação", "Quantidade"],
