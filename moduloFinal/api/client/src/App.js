@@ -7,6 +7,7 @@ export default function App() {
   const [datas, setDatas] = useState([]);
   const [dataSelect, setDataSelect] = useState('')
   const [detalhes, setDetalhes] = useState([]);
+  const [edit, setEdit] = useState(true);
 
   useEffect(async () => {
     const response = await api.get('/datas');
@@ -40,6 +41,10 @@ export default function App() {
     setDetalhes([...detalhes]);
   };
 
+  const handleEdit = () => {
+    setEdit(!edit);
+  }
+
   const lancamentos = detalhes.length;
 
   let receitas = 0;
@@ -60,52 +65,61 @@ export default function App() {
     <>
       <div className="container">
         <form>
-          <h1 className="center">Controle Financeiro Pessoal</h1>
-          <select className="browser-default" onChange={e => handlePeriod(e.target.value)}>
-            {datas.map((data) => {
-              //return <option key={data} value={data}>{moment(new Date(data)).format("MMM/YYYY")}</option>
-              return <option key={data} value={data}>{data}</option>
-            })}
-          </select>
-          <div style={{ marginTop: '10px' }} className="row">
-            <input type="text" onChange={e => handleInput(e.target.value)} />
+          <div className="card blue-grey darken-2">
+            <div className="card-content white-text">
+              <h1 className="center">Controle Financeiro Pessoal</h1>
+              <select className="browser-default" onChange={e => handlePeriod(e.target.value)}>
+                {datas.map((data) => {
+                  return <option key={data} value={data}>{moment(data).format("MMM/YYYY")}</option>
+                  //return <option key={data} value={data}>{data}</option>
+                })}
+              </select>
+              <div style={{ marginTop: '10px' }} className="row">
+                <button onClick={() => handleEdit()} className="waves-effect waves-light btn col s2" type="button">Adicionar</button><input className="col s10" style={{ color: '#fff' }} type="text" onChange={e => handleInput(e.target.value)} />
+              </div>
+              <div hidden={edit} className="row">
+                <div>
+                  <button onClick={() => handleEdit()} className="waves-effect waves-light btn col s2" type="button">Cancelar</button>
+                </div>
+              </div>
+              <div style={{ marginTop: '10px', border: '1px solid', height: '50px', display: 'flex', alignItems: 'center' }} className="row">
+                <div style={{ color: '#B0E0E6' }} className="col s3">
+                  <strong>Lançamentos: </strong>{lancamentos}
+                </div>
+                <div style={{ color: '#00FF00' }} className="col s3">
+                  <strong>Receitas: </strong>{receitas}
+                </div>
+                <div style={{ color: '#FFB6C1' }} className="col s3">
+                  <strong>Despesas: </strong>{despesas}
+                </div>
+                <div style={{ color: '#00FFFF' }} className="col s3">
+                  <strong>Saldo: </strong>{saldo}
+                </div>
+              </div>
+              <table style={{ marginTop: '5px' }}>
+                <tbody>
+                  {detalhes.map((valor) => {
+                    return (
+                      <tr key={valor._id} style={{ background: valor.type === '+' ? '#9ACD32' : '#FF6347', border: '1px solid #fff' }}>
+                        <td><strong>{valor.day < 10 ? '0' + valor.day : valor.day}</strong></td>
+                        <td><strong>{valor.category}</strong></td>
+                        <td>{valor.description}</td>
+                        <td > {new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                          maximumFractionDigits: 2,
+                        }).format(valor.value)}</td>
+                        <td><button className="waves-effect waves-light btn" style={{ marginRight: '5px' }} type="button">
+                          <i className="material-icons">edit</i>
+                        </button>
+                          <button className="waves-effect waves-light btn" type="button" onClick={() => handleDeleteLancamento(valor)}><i className="material-icons" >delete</i></button></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div style={{ marginTop: '10px', border: '1px solid' }} className="row">
-            <div className="col s3">
-              <strong>Lançamentos: </strong>{lancamentos}
-            </div>
-            <div className="col s3">
-              <strong>Receitas: </strong>{receitas}
-            </div>
-            <div className="col s3">
-              <strong>Despesas: </strong>{despesas}
-            </div>
-            <div className="col s3">
-              <strong>Saldo: </strong>{saldo}
-            </div>
-          </div>
-          <table style={{ marginTop: '5px' }}>
-            <tbody>
-              {detalhes.map((valor) => {
-                return (
-                  <tr key={valor._id} style={{ background: valor.type === '+' ? '#E0FFFF' : '#FFE4E1' }}>
-                    <td><strong>{valor.day < 10 ? '0' + valor.day : valor.day}</strong></td>
-                    <td><strong>{valor.category}</strong></td>
-                    <td>{valor.description}</td>
-                    <td > {new Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                      maximumFractionDigits: 2,
-                    }).format(valor.value)}</td>
-                    <td><button style={{ marginRight: '5px' }} type="button">
-                      <i className="material-icons">edit</i>
-                    </button>
-                      <button type="button" onClick={() => handleDeleteLancamento(valor)}><i className="material-icons" >delete</i></button></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
         </form>
       </div>
 
