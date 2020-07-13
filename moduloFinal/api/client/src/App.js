@@ -5,6 +5,7 @@ import moment from 'moment';
 export default function App() {
 
   const [datas, setDatas] = useState([]);
+  const [dataSelect, setDataSelect] = useState('')
   const [detalhes, setDetalhes] = useState([]);
 
   useEffect(async () => {
@@ -12,12 +13,19 @@ export default function App() {
     setDatas(response.data);
     if (response.data.length > 0) {
       const responseDetalhe = await api.get(`porperiodo?period=${response.data[0]}`);
+      setDataSelect(response.data[0]);
       setDetalhes(responseDetalhe.data);
     }
   }, []);
 
   const handlePeriod = async (data) => {
     const responseDetalhe = await api.get(`porperiodo?period=${data}`);
+    setDataSelect(data);
+    setDetalhes(responseDetalhe.data);
+  };
+
+  const handleInput = async (data) => {
+    const responseDetalhe = await api.get(`porperiodo?period=${dataSelect}&filtro=${data}`);
     setDetalhes(responseDetalhe.data);
   };
 
@@ -59,6 +67,9 @@ export default function App() {
               return <option key={data} value={data}>{data}</option>
             })}
           </select>
+          <div style={{ marginTop: '10px' }} className="row">
+            <input type="text" onChange={e => handleInput(e.target.value)} />
+          </div>
           <div style={{ marginTop: '10px', border: '1px solid' }} className="row">
             <div className="col s3">
               <strong>Lançamentos: </strong>{lancamentos}

@@ -24,9 +24,13 @@ const findAllDatas = async (req, res) => {
 
 const findByPeriod = async (req, res) => {
 
-  const { period } = req.query;
+  const { period, filtro } = req.query;
 
-  const transactions = await TransactionModel.find({ yearMonth: period });
+  var condition = filtro
+    ? { description: { $regex: new RegExp(filtro), $options: "i" }, yearMonth: period }
+    : { yearMonth: period };
+
+  const transactions = await TransactionModel.find(condition);
   try {
     res.send(transactions);
     console.log(`GET /porperiodo`);
@@ -54,8 +58,52 @@ const deleteLancamento = async (req, res) => {
   }
 };
 
+const addLancamento = async (req, res) => {
+
+  var transaction = {
+    description: req.body.description,
+    value: req.body.value,
+    category: req.body.category,
+    year: req.body.year,
+    month: req.body.month,
+    day: req.body.day,
+    yearMonth: req.body.yearMonth,
+    type: req.body.type
+  };
+  var data = new TransactionModel(transaction);
+  const retorno = await data.save();
+  try {
+    res.send(retorno);
+    console.log(`POST /add`);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: error.message || "Erro ao listar todos as datas" });
+    console.log(`POST /add - ${JSON.stringify(error.message)}`);
+  }
+};
+
+const updateLancamento = async (req, res) => {
+
+  const { id } = req.params;
+
+  const transacitionUpdated = await TransactionModel.findOneAndUpdate({ _id: id }, req.body, { new: true });
+
+  try {
+    res.send(transacitionUpdated);
+    console.log(`PUT /update`);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: error.message || "Erro ao listar todos as datas" });
+    console.log(`PUT /update - ${JSON.stringify(error.message)}`);
+  }
+};
+
 module.exports = {
   findAllDatas,
   findByPeriod,
-  deleteLancamento
+  deleteLancamento,
+  addLancamento,
+  updateLancamento
 };
