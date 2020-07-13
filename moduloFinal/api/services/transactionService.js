@@ -38,7 +38,24 @@ const findByPeriod = async (req, res) => {
   }
 };
 
+const deleteLancamento = async (req, res) => {
+
+  const { id } = req.params;
+
+  const transaction = await TransactionModel.findOneAndRemove({ _id: id });
+  try {
+    res.send(transaction);
+    console.log(`DELETE /apagarlancamento`);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: error.message || "Erro ao listar todos as datas" });
+    console.log(`DELETE /apagarlancamento - ${JSON.stringify(error.message)}`);
+  }
+};
+
 module.exports = {
   findAllDatas,
-  findByPeriod
+  findByPeriod,
+  deleteLancamento
 };
