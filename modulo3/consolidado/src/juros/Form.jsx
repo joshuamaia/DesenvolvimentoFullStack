@@ -25,7 +25,7 @@ export default function Form() {
                         }}
                         value={montante}
                         id="baseinss"
-                        type="text"
+                        type="number"
                         onChange={(e) => setMontante(e.target.value)}
                       />
                     </div>
@@ -37,7 +37,7 @@ export default function Form() {
                         }}
                         value={juros}
                         id="descontoinss"
-                        type="text"
+                        type="number"
                         onChange={(e) => setJuros(e.target.value)}
                       />
                     </div>
@@ -49,7 +49,7 @@ export default function Form() {
                         }}
                         value={periodo}
                         id="baseirrf"
-                        type="text"
+                        type="number"
                         onChange={(e) => setPeriodo(e.target.value)}
                       />
                     </div>
